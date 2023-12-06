@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <div className="">
-      <header className="p-4 flex justify-between">
+      <header className="flex justify-between">
         <a href="" className="flex items-center gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -62,7 +63,10 @@ const NavBar = () => {
             />
           </svg>
 
-          <div className="bg-gray-500 text-white rounded-full border border-gray-500 overflow-hidden">
+          <Link
+            to={"/login"}
+            className="bg-gray-500 text-white rounded-full border border-gray-500 overflow-hidden"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -75,7 +79,9 @@ const NavBar = () => {
                 clipRule="evenodd"
               />
             </svg>
-          </div>
+
+
+          </Link>
         </div>
       </header>
     </div>
