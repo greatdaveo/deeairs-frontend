@@ -16,9 +16,11 @@ const RegisterPage = () => {
         headers: { "Content-Type": "application/json" },
       });
 
-      console.log(response);
+      alert("Registration successful! You can now enjoy the our services! 😊");
+      console.log(response); 
     } catch (err) {
       console.log(err);
+      alert("Registration failed! ☹️ Please try again!");
     }
   }
 
