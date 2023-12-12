@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 const NavBar = () => {
+  // To know when user is logged in
+  const { userInfo } = useContext(UserContext);
+
   return (
     <div className="">
       <header className="flex justify-between">
@@ -47,7 +51,10 @@ const NavBar = () => {
           </button>
         </div>
 
-        <div className="flex items-center gap-2 border border-gray-300 rounded-full py-2 px-4">
+        <Link
+          to={userInfo ? "/dashboard" : "/login"}
+          className="flex items-center gap-2 border border-gray-300 rounded-full py-2 px-4"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -63,10 +70,7 @@ const NavBar = () => {
             />
           </svg>
 
-          <Link
-            to={"/login"}
-            className="bg-gray-500 text-white rounded-full border border-gray-500 overflow-hidden"
-          >
+          <div className="bg-gray-500 text-white rounded-full border border-gray-500 overflow-hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -79,8 +83,10 @@ const NavBar = () => {
                 clipRule="evenodd"
               />
             </svg>
-          </Link>
-        </div>
+          </div>
+
+          {userInfo && <div>{userInfo.name}</div>}
+        </Link>
       </header>
     </div>
   );

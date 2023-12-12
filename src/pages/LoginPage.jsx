@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setRedirect] = useState(false);
   const navigate = useNavigate();
+
+  const { setUserInfo } = useContext(UserContext);
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -17,10 +20,10 @@ const LoginPage = () => {
         credentials: "include",
       });
 
-      if (response.ok) {
-        alert("Login successful! 😊");
-        setRedirect(true);
-      }
+      const userData = await response.json();
+      alert("Login successful! 😊");
+      setRedirect(true);
+      setUserInfo(userData);
     } catch (err) {
       alert("Login failed! ☹️");
     }
