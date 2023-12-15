@@ -16,7 +16,7 @@ function App() {
             <Route index element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/dashboard/:sub_page?" element={<DashboardPage />} />
           </Route>
         </Routes>
       </BrowserRouter>
