@@ -4,6 +4,7 @@ export const UserContext = createContext({});
 
 export function UserContextProvider({ children }) {
   const [userInfo, setUserInfo] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   //   To check if user is logged in
   useEffect(() => {
@@ -14,13 +15,14 @@ export function UserContextProvider({ children }) {
         });
         const data = await response.json();
         setUserInfo(data);
+        setIsLoading(true);
       }
     };
     fetchData();
   }, []);
 
   return (
-    <UserContext.Provider value={{ userInfo, setUserInfo }}>
+    <UserContext.Provider value={{ userInfo, setUserInfo, isLoading }}>
       {children}
     </UserContext.Provider>
   );
