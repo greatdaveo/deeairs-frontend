@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import FeaturesLabel from "./FeaturesLabel";
-import TimeTaken from "./TimeTaken";
+import FeaturesLabel from "../LocationsComponent/FeaturesLabel";
+import TimeTaken from "../LocationsComponent/TimeTaken";
 
 const LocationsPage = () => {
   const { action } = useParams();
@@ -17,6 +17,30 @@ const LocationsPage = () => {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [maxGuests, setMaxGuests] = useState(1);
+
+  // To add photo by link
+  async function addPhotoByLink(e) {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:4000/upload-by-link", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({ link: photoLink }),
+      });
+
+      const photoUrlData = await response.json();
+
+      setAddedPhotos((prev) => {
+        return [...prev, photoUrlData];
+      });
+      console.log(photoUrlData);
+    } catch (err) {
+      alert(err.message);
+    }
+    setPhotoLink("");
+  }
 
   return (
     <div className="">
@@ -75,13 +99,26 @@ const LocationsPage = () => {
                 onChange={(e) => setPhotoLink(e.target.value)}
                 placeholder="Add using a link e.g www.imageurl.jpg"
               />
-              <button className="bg-gray-200 px-4 my-2 text-primary rounded-2xl ">
+              <button
+                className="bg-gray-200 px-4 my-2 text-primary rounded-2xl "
+                onClick={addPhotoByLink}
+              >
                 Add&nbsp;photo
               </button>
             </div>
 
-            <div className="mt-2 grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-              <button className="flex gap-1 justify-center border bg-transparent rounded-2xl p-6 text-2xl text-gray-600">
+            <div className="mt-2 grid gap-2 grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+              {addedPhotos.length > 0 &&
+                addedPhotos.map((imageLink, i) => (
+                  <div key={i}>
+                    <img
+                      src={"http://localhost:4000/uploads/" + imageLink}
+                      className="rounded-2xl "
+                      alt=""
+                    />
+                  </div>
+                ))}
+              <button className="flex gap-1 justify-center items-center border bg-transparent rounded-2xl p-2 text-2xl text-gray-600">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

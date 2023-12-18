@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useNavigate, Link, useParams } from "react-router-dom";
-import LocationsPage from "../components/LocationsInfoComponent/LocationsPage";
+import LocationsPage from "../components/LocationsComponent/LocationsPage";
 
 const DashboardPage = () => {
   const { userInfo, setUserInfo, isLoading } = useContext(UserContext);

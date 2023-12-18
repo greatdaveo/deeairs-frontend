@@ -11,7 +11,7 @@ const RegisterPage = () => {
     e.preventDefault();
     try {
       const response = await fetch("http://localhost:4000/register", {
-        method: "POST",
+        method: "POST", 
         body: JSON.stringify({ name, email, password }),
         headers: { "Content-Type": "application/json" },
       });
