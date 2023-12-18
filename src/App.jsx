@@ -17,6 +17,10 @@ function App() {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/dashboard/:sub_page?" element={<DashboardPage />} />
+            <Route
+              path="/dashboard/:sub_page/:action"
+              element={<DashboardPage />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>
