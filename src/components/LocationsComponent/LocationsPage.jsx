@@ -35,11 +35,40 @@ const LocationsPage = () => {
       setAddedPhotos((prev) => {
         return [...prev, photoUrlData];
       });
-      console.log(photoUrlData);
+      // console.log(photoUrlData);
     } catch (err) {
       alert(err.message);
     }
     setPhotoLink("");
+  }
+
+  // To handle uploaded photo files
+  async function handleUploadPhoto(e) {
+    e.preventDefault();
+    const photoFiles = e.target.files;
+    // console.log(photoFiles);
+    const formData = new FormData();
+
+    for (let i = 0; i < photoFiles.length; i++) {
+      formData.append("photos", photoFiles[i]);
+    }
+
+    try {
+      const response = await fetch("http://localhost:4000/upload", {
+        method: "POST",
+        credentials: "include",
+        body: formData,
+      });
+
+      const uploadedFiles = await response.json();
+
+      setAddedPhotos((prev) => {
+        return [...prev, ...uploadedFiles];
+      });
+      console.log(uploadedFiles);
+    } catch (err) {
+      alert(err.message);
+    }
   }
 
   return (
@@ -110,15 +139,22 @@ const LocationsPage = () => {
             <div className="mt-2 grid gap-2 grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
               {addedPhotos.length > 0 &&
                 addedPhotos.map((imageLink, i) => (
-                  <div key={i}>
+                  <div key={i} className="h-32 flex">
                     <img
                       src={"http://localhost:4000/uploads/" + imageLink}
-                      className="rounded-2xl "
+                      className="rounded-2xl w-full object-cover"
                       alt=""
                     />
                   </div>
                 ))}
-              <button className="flex gap-1 justify-center items-center border bg-transparent rounded-2xl p-2 text-2xl text-gray-600">
+
+              <label className="h-32 cursor-pointer flex gap-1 justify-center items-center border bg-transparent rounded-2xl p-2 text-2xl text-gray-600">
+                <input
+                  type="file"
+                  className="hidden"
+                  multiple
+                  onChange={handleUploadPhoto}
+                />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -134,7 +170,7 @@ const LocationsPage = () => {
                   />
                 </svg>
                 Upload
-              </button>
+              </label>
             </div>
 
             <h2 className="text-xl mt-4">Description: </h2>
@@ -149,7 +185,7 @@ const LocationsPage = () => {
               Kindly select the features related to your location
             </p>
 
-            <FeaturesLabel />
+            <FeaturesLabel selected={features} onChange={setFeatures} />
 
             <h2 className="text-xl mt-4">Extra Info: </h2>
             <p className="text-gray-400 text-sm">
