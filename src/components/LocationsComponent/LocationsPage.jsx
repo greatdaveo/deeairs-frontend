@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import FeaturesLabel from "../LocationsComponent/FeaturesLabel";
-import TimeTaken from "../LocationsComponent/TimeTaken";
+// import TimeTaken from "../LocationsComponent/TimeTaken";
 
 const LocationsPage = () => {
   const { action } = useParams();
@@ -71,6 +71,39 @@ const LocationsPage = () => {
     }
   }
 
+  // TO SUBMIT THE LOCATION FORM
+  const navigate = useNavigate();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:4000/locations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify({
+          title,
+          address,
+          addedPhotos,
+          description,
+          features,
+          extraInfo,
+          checkIn,
+          checkOut,
+          maxGuests,
+        }),
+      });
+
+      const locationData = await response.json();
+      console.log(locationData);
+    } catch (err) {
+      alert(err.message);
+    }
+
+    navigate("/dashboard/locations");
+  }
+
   return (
     <div className="">
       {action !== "new" && (
@@ -100,7 +133,7 @@ const LocationsPage = () => {
 
       {action === "new" && (
         <div>
-          <form action="">
+          <form onSubmit={handleSubmit}>
             <h2 className="text-xl mt-4">Title: </h2>
             <p className="text-gray-400 text-sm">
               Ensure your location title should be short and simple for advert
@@ -201,7 +234,34 @@ const LocationsPage = () => {
               Add check in and out times, the maximum number of occupants
             </p>
 
-            <TimeTaken />
+            <div className="grid sm:grid-cols-3 gap-2">
+              <div>
+                <h3 className="mt-2 -mb-1">Check in time: </h3>
+                <input
+                  type="time"
+                  value={checkIn}
+                  onChange={(e) => setCheckIn(e.target.value)}
+                />
+              </div>
+
+              <div>
+                <h3 className="mt-2 -mb-1">Check out time: </h3>
+                <input
+                  type="time"
+                  value={checkOut}
+                  onChange={(e) => setCheckOut(e.target.value)}
+                />
+              </div>
+
+              <div>
+                <h3 className="mt-2 -mb-1">Max number of guests: </h3>
+                <input
+                  type="number"
+                  value={maxGuests}
+                  onChange={(e) => setMaxGuests(e.target.value)}
+                />
+              </div>
+            </div>
 
             <div className="mt-2">
               <button className="btn">Save</button>
