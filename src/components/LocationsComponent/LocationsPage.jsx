@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import FeaturesLabel from "../LocationsComponent/FeaturesLabel";
+import LocationNav from "./LocationNav";
 // import TimeTaken from "../LocationsComponent/TimeTaken";
 
 const LocationsPage = () => {
-  const { action } = useParams();
-  //   console.log(action);
+  const { id, action } = useParams();
+  console.log(id);
 
   const [title, setTitle] = useState("");
   const [address, setAddress] = useState("");
@@ -96,7 +97,7 @@ const LocationsPage = () => {
       });
 
       const locationData = await response.json();
-      console.log(locationData);
+      // console.log(locationData);
     } catch (err) {
       alert(err.message);
     }
@@ -107,27 +108,8 @@ const LocationsPage = () => {
   return (
     <div className="">
       {action !== "new" && (
-        <div className="text-center">
-          <Link
-            className="inline-flex gap-1 bg-primary text-white py-2 px-6 rounded-full"
-            to={"/dashboard/locations/new"}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 6v12m6-6H6"
-              />
-            </svg>
-            Add new location
-          </Link>
+        <div>
+          <LocationNav />
         </div>
       )}
 

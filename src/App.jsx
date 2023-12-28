@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { UserContextProvider } from "./context/UserContext";
 import DashboardPage from "./pages/DashboardPage";
+import LocationsPage from "./components/LocationsComponent/LocationsPage";
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
             <Route
               path="/dashboard/:sub_page/:action"
               element={<DashboardPage />}
+            />
+            <Route
+              path="/dashboard/locations/:id"
+              element={<LocationsPage />}
             />
           </Route>
         </Routes>
