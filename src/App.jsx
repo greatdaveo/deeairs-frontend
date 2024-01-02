@@ -7,6 +7,7 @@ import RegisterPage from "./pages/RegisterPage";
 import { UserContextProvider } from "./context/UserContext";
 import DashboardPage from "./pages/DashboardPage";
 import LocationsPage from "./components/LocationsComponent/LocationsPage";
+import LocationsFormPage from "./pages/LocationsFormPage";
 
 function App() {
   return (
@@ -19,18 +20,18 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/dashboard/:sub_page?" element={<DashboardPage />} />
             <Route
-              path="/dashboard/:sub_page/:action"
+              path="/dashboard/:sub_page/:action?"
               element={<DashboardPage />}
             />
             <Route
               path="/dashboard/locations/:id"
-              element={<LocationsPage />}
+              element={<LocationsFormPage />}
             />
           </Route>
         </Routes>
       </BrowserRouter>
     </UserContextProvider>
-  );
+  ); ////
 }
 
 export default App;

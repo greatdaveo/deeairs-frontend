@@ -14,7 +14,7 @@ const FeaturesLabel = ({ selected, onChange }) => {
   }
 
   return (
-    <div className="mt-2 grid gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6" >
+    <div className="mt-2 grid gap-2 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
       <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
         <input type="checkbox" name="wifi" onChange={handleCheckBox} />
         <svg
@@ -36,7 +36,12 @@ const FeaturesLabel = ({ selected, onChange }) => {
       </label>
 
       <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-        <input type="checkbox" name="parking" onChange={handleCheckBox} />
+        <input
+          type="checkbox"
+          checked={selected.includes("parking")}
+          name="parking"
+          onChange={handleCheckBox}
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -56,7 +61,12 @@ const FeaturesLabel = ({ selected, onChange }) => {
       </label>
 
       <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-        <input type="checkbox" name="tv" onChange={handleCheckBox} />
+        <input
+          type="checkbox"
+          checked={selected.includes("tv")}
+          name="tv"
+          onChange={handleCheckBox}
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -76,7 +86,12 @@ const FeaturesLabel = ({ selected, onChange }) => {
       </label>
 
       <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-        <input type="checkbox" name="party" onChange={handleCheckBox} />
+        <input
+          type="checkbox"
+          checked={selected.includes("party")}
+          name="party"
+          onChange={handleCheckBox}
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -116,7 +131,12 @@ const FeaturesLabel = ({ selected, onChange }) => {
       </label>
 
       <label className="border p-4 flex rounded-2xl gap-2 items-center cursor-pointer">
-        <input type="checkbox" name="privacy" onChange={handleCheckBox} />
+        <input
+          type="checkbox"
+          checked={selected.includes("privacy")}
+          name="privacy"
+          onChange={handleCheckBox}
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

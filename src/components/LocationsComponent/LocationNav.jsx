@@ -13,7 +13,7 @@ const LocationNav = () => {
           credentials: "include",
         });
         const data = await response.json();
-        console.log("Fetched data:", data);
+        // console.log("Fetched data:", data);
         setLocationFormData(data);
       } catch (err) {
         alert(err.message);
@@ -55,10 +55,14 @@ const LocationNav = () => {
               key={i}
               className=" flex cursor-pointer gap-4 bg-gray-200 p-4 rounded-2xl my-2"
             >
-              <div className="w-32 h-32 bg-gray-300 grow shrink-0">
+              <div className="flex w-32 h-32 bg-gray-300 shrink-0">
                 {locationData.addedPhotos.length > 0 && (
                   <img
-                    src={locationData.addedPhotos[0]}
+                    className="object-cover"
+                    src={
+                      "http://localhost:4000/uploads/" +
+                      locationData.addedPhotos[0]
+                    }
                     alt={locationData.title}
                   />
                 )}

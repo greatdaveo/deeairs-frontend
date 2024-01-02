@@ -11,13 +11,13 @@ const RegisterPage = () => {
     e.preventDefault();
     try {
       const response = await fetch("http://localhost:4000/register", {
-        method: "POST", 
+        method: "POST",
         body: JSON.stringify({ name, email, password }),
         headers: { "Content-Type": "application/json" },
       });
 
       alert("Registration successful! You can now enjoy the our services! 😊");
-      console.log(response); 
+      console.log(response);
     } catch (err) {
       console.log(err);
       alert("Registration failed! ☹️ Please try again!");
@@ -28,7 +28,7 @@ const RegisterPage = () => {
     <div className="mt-4 grow flex items-center justify-around">
       <div className="mb-20">
         <h1 className="text-4xl text-center mb-4">Kindly register here!</h1>
-        <form onClick={handleSubmit} className="max-w-md mx-auto">
+        <form onSubmit={handleSubmit} className="max-w-md mx-auto">
           <input
             type="text"
             placeholder="John Doe"

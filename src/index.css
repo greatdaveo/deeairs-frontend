@@ -11,3 +11,6 @@ button.btn {
     @apply bg-primary p-2 w-full rounded-2xl text-white;
 }
 
+textarea {
+    height: 120px;
+}
