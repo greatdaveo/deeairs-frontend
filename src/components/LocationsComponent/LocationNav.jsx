@@ -8,7 +8,7 @@ const LocationNav = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:4000/locations", {
+        const response = await fetch("http://localhost:4000/user-locations", {
           method: "GET",
           credentials: "include",
         });
