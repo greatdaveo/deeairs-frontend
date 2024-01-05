@@ -6,6 +6,11 @@ input[type="text"], input[type="password"], input[type="email"], textarea, input
     @apply w-full border my-2 py-2 px-3 rounded-2xl;
 }
 
+button {
+        background-color: rgb(214, 209, 209);
+}
+
+
 button.btn {
     background-color: #04aa6d;
     @apply bg-primary p-2 w-full rounded-2xl text-white;

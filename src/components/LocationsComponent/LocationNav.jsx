@@ -70,7 +70,9 @@ const LocationNav = () => {
 
               <div className="grow-0 shrink">
                 <h2 className="text-xl font-bold">{locationData.title}</h2>
-                <p className="text-sm mt-2">{locationData.description}</p>
+                <p className="text-sm mt-2">
+                  {locationData.description}
+                </p>
               </div>
             </Link>
           ))}
