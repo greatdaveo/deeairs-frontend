@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import BookingsForm from "../components/Bookings/BookingsForm";
 
 const SingleLocationPage = () => {
   const { id } = useParams();
@@ -178,29 +179,7 @@ const SingleLocationPage = () => {
           Max number of guests: {locationData.maxGuests}
         </div>
 
-        <div className="bg-white shadow p-4 rounded-2xl text-center">
-          <h2 className="text-xl">Price: ${locationData.price} / per night</h2>
-          <div className="border rounded-2xl mt-4 text-left">
-            <div className="flex">
-              <div className="py-2 px-2 rounded-2xl">
-                <label>Check in: </label>
-                <input type="date" />
-              </div>
-
-              <div className="py-2 px-2 rounded-2xl border-l">
-                <label>Check out: </label>
-                <input type="date" />
-              </div>
-            </div>
-
-            <div className="py-2 px-2 rounded-2xl border-t">
-              <label>Number of guests: </label>
-              <input type="number" value={1} />
-            </div>
-          </div>
-
-          <button className="btn mt-4">Book this place</button>
-        </div>
+        <BookingsForm locationData={locationData} />
       </div>
 
       <div className="my-8 -mx-8 py-8 px-8 text-sm text-gray-600 leading-6 bg-white border-t">
