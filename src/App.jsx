@@ -9,6 +9,8 @@ import DashboardPage from "./pages/DashboardPage";
 import LocationsPage from "./components/LocationsComponent/LocationsPage";
 import LocationsFormPage from "./pages/LocationsFormPage";
 import SingleLocationPage from "./pages/SingleLocationPage";
+import BookingsPage from "./pages/BookingsPage";
+import SingleBookingPage from "./pages/SingleBookingPage";
 
 function App() {
   return (
@@ -29,6 +31,11 @@ function App() {
               element={<LocationsFormPage />}
             />
             <Route path="/location/:id" element={<SingleLocationPage />} />
+            <Route path="/dashboard/bookings" element={<BookingsPage />} />
+            <Route
+              path="/dashboard/bookings/:id"
+              element={<SingleBookingPage />}
+            />
           </Route>
         </Routes>
       </BrowserRouter>

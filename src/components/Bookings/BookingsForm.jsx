@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { differenceInCalendarDays } from "date-fns";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const BookingsForm = ({ locationData }) => {
   const [checkIn, setCheckIn] = useState("");
@@ -9,6 +10,14 @@ const BookingsForm = ({ locationData }) => {
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const navigate = useNavigate();
+
+  const { userInfo } = useContext(UserContext);
+
+  useEffect(() => {
+    if (userInfo) {
+      setName(userInfo.name);
+    }
+  }, [userInfo]);
 
   let numberOfNights = 0;
 
